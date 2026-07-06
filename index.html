@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta de Turmas e Avaliações</title>
+  <link rel="stylesheet" href="./style.css?v=20260703">
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <p class="tag">Sistema de consulta IEWW</p>
+      <h1>Consulta de Turmas e Avaliações</h1>
+    </section>
+
+    <section class="painel">
+      <div class="formulario">
+        <label>
+          Mês
+          <select id="mes">
+            <option value="">Todos os meses</option>
+          </select>
+        </label>
+
+        <label class="campo-turma-label">
+          Código da turma
+
+          <div class="campo-turma">
+            <input 
+              id="turma" 
+              type="text" 
+              placeholder="Digite ou selecione a turma" 
+              autocomplete="off"
+            >
+
+            <button type="button" id="limparTurma" class="limpar-turma">
+              ×
+            </button>
+
+            <div id="listaTurmas" class="lista-turmas escondido"></div>
+          </div>
+        </label>
+
+        <label>
+          Disciplina
+          <select id="disciplina">
+            <option value="">Todas as disciplinas</option>
+          </select>
+        </label>
+
+        <label>
+          Unidade
+          <select id="unidade">
+            <option value="">Todas as unidades</option>
+          </select>
+        </label>
+
+        <button id="limpar" type="button">Nova consulta</button>
+      </div>
+
+      <div class="resultado">
+        <p class="resultado-titulo">Resultado da consulta</p>
+        <div id="estadoInicial" class="estado">Carregando planilha...</div>
+        <div id="listaResultado" class="lista escondido"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
