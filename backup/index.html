@@ -3,12 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#80008c">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Turmas IEWW">
-  <link rel="manifest" href="./manifest.json">
-  <link rel="apple-touch-icon" href="./icons/icon-192.png">
   <title>Consulta de Turmas e Avaliações</title>
   <link rel="stylesheet" href="./style.css?v=20260703">
 </head>
@@ -74,12 +68,5 @@
 
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script src="./script.js"></script>
-  <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./service-worker.js");
-      });
-    }
-  </script>
 </body>
 </html>
