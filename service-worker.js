@@ -1,4 +1,4 @@
-const CACHE_NAME = "ieww-pwa-v1";
+const CACHE_NAME = "ieww-pwa-v2";
 
 const FILES_TO_CACHE = [
   "./",
@@ -8,8 +8,7 @@ const FILES_TO_CACHE = [
   "./manifest.json",
   "./cronograma.xlsx",
   "./icons/icon-192.png",
-  "./icons/icon-512.png",
-  "https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"
+  "./icons/icon-512.png"
 ];
 
 self.addEventListener("install", event => {
@@ -35,7 +34,6 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   const url = new URL(event.request.url);
 
-  // Não interceptar arquivos externos, como OneSignal/CDN
   if (url.origin !== self.location.origin) {
     return;
   }
@@ -43,13 +41,6 @@ self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request).then(response => {
       return response || fetch(event.request);
-    })
-  );
-});
-
-  event.respondWith(
-    caches.match(event.request).then(cachedResponse => {
-      return cachedResponse || fetch(event.request);
-    })
+    }).catch(() => fetch(event.request))
   );
 });
