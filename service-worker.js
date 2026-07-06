@@ -33,20 +33,19 @@ self.addEventListener("activate", event => {
 });
 
 self.addEventListener("fetch", event => {
-  const requestUrl = new URL(event.request.url);
+  const url = new URL(event.request.url);
 
-  if (requestUrl.pathname.endsWith("cronograma.xlsx")) {
-    event.respondWith(
-      fetch(event.request)
-        .then(response => {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-          return response;
-        })
-        .catch(() => caches.match(event.request))
-    );
+  // Não interceptar arquivos externos, como OneSignal/CDN
+  if (url.origin !== self.location.origin) {
     return;
   }
+
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
+  );
+});
 
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
