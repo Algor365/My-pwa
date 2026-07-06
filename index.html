@@ -86,10 +86,15 @@ OneSignalDeferred.push(async function (OneSignal) {
   <script src="./script.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./service-worker.js");
-      });
+  window.addEventListener("load", async () => {
+    try {
+      await navigator.serviceWorker.register("./service-worker.js");
+      console.log("PWA Service Worker registrado.");
+    } catch (e) {
+      console.error(e);
     }
+  });
+}
   </script>
 </body>
 </html>
